@@ -1,6 +1,7 @@
+import sqlite3
 import csv
+from conecta import *
 from armas import arma
-
 
 def NovaArma():
     nome = input('Digite o nome da arma: ')
@@ -10,6 +11,35 @@ def NovaArma():
     global NArma
     NArma = arma(nome, custo, dano, peso)
 
+CriaTabela()
+
+print('### Bem Vindo a Forja ###')
+print('O que deseja?')
+opcao = int(input('1 - Inserir nova arma\n2 - Consulta arsenal\nOpção: '))
+if (opcao == 1):
+    NovaArma()
+    InsereDados(NArma.nome, NArma.custo, NArma.dano, NArma.peso)
+    while (True):
+        opcao = int(input('Deseja adicionar outra arma?\n1 - Sim\n2 - Não\nOpção: '))
+        if (opcao == 1):
+            NovaArma()
+            InsereDados(NArma.nome, NArma.custo, NArma.dano, NArma.peso)
+        else:
+            print('Obrigado por utilizar a forja')
+            break
+
+elif opcao==2:
+    ConsultaArsenal()
+    while (True):
+        opcao = int(input('Deseja adicionar outra arma?\n1 - Sim\n2 - Não\nOpção: '))
+        if (opcao == 1):
+            NovaArma()
+            InsereDados(NArma.nome, NArma.custo, NArma.dano, NArma.peso)
+        else:
+            print('Obrigado por utilizar a forja')
+            break
+
+'''
 def NovaLista(nome, custo, dano, peso):
     with open('armas.csv', 'w', newline='') as file:
         writer = csv.writer(file)
@@ -49,3 +79,4 @@ elif opcao==2:
         else:
             print('Obrigado por utilizar a forja')
             break
+'''

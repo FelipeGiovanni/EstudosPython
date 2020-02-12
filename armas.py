@@ -1,3 +1,5 @@
+
+
 class arma:
     def __init__(self, nome, custo, dano, peso):
         self.nome = nome
